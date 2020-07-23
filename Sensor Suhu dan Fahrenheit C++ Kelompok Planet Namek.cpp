@@ -1,16 +1,16 @@
 #include <ESP8266WiFi.h>
 
-String apiWritekey = ""; //masukan api thingspeak untuk melakukan upload data ke web thingspeak
+String apiWritekey = ""; // masukan api thingspeak untuk melakukan upload data ke web thingspeak
 const char* ssid = ""; // masukan ssid wifi
 const char* password = "" ;// masukan password wifi
  
 const char* server = "api.thingspeak.com"; menghubungkan ke server thingspreak
 
-const int LM_35 = A0; //memberikan sourc code untuk input data sensor lm35 untuk masuk port A0
-int input_val = 0; //menambahkan input dengan nilai default 0
-float celsius = 0; //menambahkan celsius dengan nilai default 0
-float farnheit = 0; //menambahkan farnheit dengan nilai default 0
-WiFiClient client; //konfigurasi terhadap wifi
+const int LM_35 = A0; // memberikan sourc code untuk input data sensor lm35 untuk masuk port A0
+int input_val = 0; // menambahkan input dengan nilai default 0
+float celsius = 0; // menambahkan celsius dengan nilai default 0
+float farnheit = 0; // menambahkan farnheit dengan nilai default 0
+WiFiClient client; // konfigurasi terhadap wifi
 void setup() {
   // masukan buid dari port yang digunakan dan menggunakan pembacaan sesor 1x:
   Serial.begin(9600);
@@ -23,7 +23,7 @@ void setup() {
   Serial.print("Connecting to ");
   Serial.println(ssid);
 
-   WiFi.begin(ssid, password);      //kelompok C++ Planet Namek
+   WiFi.begin(ssid, password); // kelompok C++ Planet Namek
  
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -42,11 +42,11 @@ void loop() {
  celsius = (input_val * 500) / 1023;
 
   farnheit = 1.8 * celsius + 32;
-if (client.connect(server,80))  //melakukan upload ke web server thingspeak
+if (client.connect(server,80))  // melakukan upload ke web server thingspeak
   {  
-    String tsData = apiWritekey; //memanggil api dari server
+    String tsData = apiWritekey; // memanggil api dari server
            tsData +="&field1="; // memanggil filed yg digunakan pada web
-           tsData += String(celsius); //memanggil celsius untuk outputnya
+           tsData += String(celsius); // memanggil celsius untuk outputnya
            tsData += "\r\n\r\n";
  
      client.print("POST /update HTTP/1.1\n");
@@ -59,7 +59,7 @@ if (client.connect(server,80))  //melakukan upload ke web server thingspeak
      client.print("\n\n");  // memberi jarak pada filed yang ditampilkan
      client.print(tsData);
 
-     Serial.print("temperatur: "); //menampilkan output temperatur
+     Serial.print("temperatur: "); // menampilkan output temperatur
      Serial.print(celsius); // memanggil celsius 
   }
   if(client.connect(server,80))

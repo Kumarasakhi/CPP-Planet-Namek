@@ -44,9 +44,9 @@ void loop() {
   farnheit = 1.8 * celsius + 32;
 if (client.connect(server,80))  //melakukan upload ke web server thingspeak
   {  
-    String tsData = apiWritekey; //memanggil api dari server
+    String tsData = apiWritekey; // memanggil api dari server
            tsData +="&field1="; // memanggil filed yg digunakan pada web
-           tsData += String(celsius); //memanggil celsius untuk outputnya
+           tsData += String(celsius); // memanggil celsius untuk outputnya
            tsData += "\r\n\r\n";
  
      client.print("POST /update HTTP/1.1\n");
@@ -59,12 +59,12 @@ if (client.connect(server,80))  //melakukan upload ke web server thingspeak
      client.print("\n\n");  // memberi jarak pada filed yang ditampilkan
      client.print(tsData);
 
-     Serial.print("temperatur: "); //menampilkan output temperatur
+     Serial.print("temperatur: "); // menampilkan output temperatur
      Serial.print(celsius); // memanggil celsius 
   }
   if(client.connect(server,80))
   {  
-    String tsData = apiWritekey; //memanggil api dari server
+    String tsData = apiWritekey; // memanggil api dari server
            tsData +="&field2="; // memanggil filed yg digunakan pada web
            tsData += String(farnheit); //memanggil farnheit untuk outputnya
            tsData += "\r\n\r\n";
@@ -79,7 +79,7 @@ if (client.connect(server,80))  //melakukan upload ke web server thingspeak
      client.print("\n\n");  // memberi jarak pada filed yang ditampilkan
      client.print(tsData);
 
-     Serial.print("\nFarnheit: "); //menampilkan output Farnheit
+     Serial.print("\nFarnheit: "); // menampilkan output Farnheit
   Serial.println(farnheit); // memanggil farnheit untuk outputnya
      Serial.println("upload ke server Thinkspeak....");
   }
